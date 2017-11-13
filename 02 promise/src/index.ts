@@ -1,11 +1,16 @@
-const example = new Promise<number>((resolve, reject) => {
-  // Use resolve or reject to determine the fate of the promise
-});
+const first = new Promise<number>((resolve, reject) => {
+  resolve(123);
+})
+const second =
+  first
+    .then(value => {
+      // Control the fate of second 
+      
+    });
 
-example.then(value => {
-  console.log(value);
+second.then(value => {
+  console.log('second then', value);
 });
-
-example.catch(error => {
-  console.log(error);
+second.catch(error => {
+  console.log('second catch', error);
 });

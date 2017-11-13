@@ -37,5 +37,52 @@ example.catch(error => {
 ```
 A promise rejection should only be done in exceptional circumstances, and just like it is bad practice to throw a raw string, it is bad practice to reject a promise with a raw string. Always use the error constructor `new Error`. 
 
+***Delete all the code***
 Alright, now that we understand the fundamentals of promise creation and its fate, lets look into the concept of a promise *chain*.
 
+* The `then` function creates a new promise. 
+* This new promise is distinct from the original promise
+```js
+const first = new Promise<number>((resolve, reject) => {
+  resolve(123);
+})
+const second =
+  first
+    .then(value => {
+      // Control the fate of second 
+    });
+
+console.log(first === second); // false
+```
+
+***Delete console.log(first === second); // false***
+* The fate of this promise is determined by the body of the `then` callback.
+```js
+second.then(value => {
+  console.log('second then', value);
+});
+second.catch(error => {
+  console.log('second catch', error);
+});
+```
+* If you return a value from the callback, that becomes the resolved value of the second promise
+```js
+      // Control the fate of second 
+      return 456;
+```
+* Ofcourse if you don't return a value, JavaScript implicitly returns `undefined` and that becomes the resolved value. 
+```js
+      // Control the fate of second 
+  
+```
+* If you *throw* an error, then the second promise is rejected.
+```js
+      // Control the fate of second 
+      throw new Error('example');
+```
+* If the runtime throws an error e.g. I'm going to use an undeclared variable.
+
+```js
+      // Control the fate of second 
+      foo.bar;
+```
