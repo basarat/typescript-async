@@ -75,14 +75,28 @@ second.catch(error => {
       // Control the fate of second 
   
 ```
+* If you return a promise, then the value becomes the resolved value of the second promise
+
+```js
+      // Control the fate of second 
+      return new Promise((res) => res(789));
+```
+* And if that return promise is rejected, then the second promise is also rejected.
+
+```js
+      // Control the fate of second 
+      return new Promise((res, rej) => rej(new Error('example')));
+```
+
 * If you *throw* an error, then the second promise is rejected.
 ```js
       // Control the fate of second 
       throw new Error('example');
 ```
-* If the runtime throws an error e.g. I'm going to use an undeclared variable.
+* If the runtime throws an error, then again the second promise is rejected e.g. I'm going to use an undeclared variable.
 
 ```js
       // Control the fate of second 
       foo.bar;
 ```
+

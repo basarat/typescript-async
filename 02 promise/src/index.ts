@@ -5,7 +5,7 @@ const second =
   first
     .then(value => {
       // Control the fate of second 
-      
+      return new Promise(res => res(789));
     });
 
 second.then(value => {
