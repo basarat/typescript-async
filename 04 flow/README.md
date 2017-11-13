@@ -4,3 +4,4 @@
 # TODO:
 - Serial is simple as await as created.
 - Parallel is `Promise.all`.
+- Also `Promise.race`.

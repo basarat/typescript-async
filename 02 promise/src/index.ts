@@ -1,11 +1,14 @@
 const first = new Promise<number>((resolve, reject) => {
-  resolve(123);
+  reject(123);
 })
 const second =
   first
     .then(value => {
       // Control the fate of second 
-      return new Promise(res => res(789));
+      
+    })
+    .catch(error => {
+      console.log('here')
     });
 
 second.then(value => {

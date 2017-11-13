@@ -100,3 +100,9 @@ second.catch(error => {
       foo.bar;
 ```
 
+***Delete everything***
+One very useful and fundamental behavior of promises is how rejection is propogated. 
+
+```js
+
+```
