@@ -14,6 +14,7 @@ At the heart of async/await is a Promise chain. To create a promise chain we nee
 const example = new Promise<number>((resolve, reject) => {
   // Use resolve or reject to determine the fate of the promise
 });
+
 ```
 Promises have two function's `.then` and `.catch` that are invoked depending upon the fate of the promise. 
 ```js
