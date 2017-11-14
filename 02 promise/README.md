@@ -103,6 +103,50 @@ second.catch(error => {
 ***Delete everything***
 One very useful and fundamental behavior of promises is how rejection is propogated. 
 
-```js
+Lets say we have a chain of promises with a few `thens`'s followed by a `catch`
 
+```js
+new Promise<number>((res, rej) => {
+  res(123);
+})
+  .then(res => {
+    console.log(res);
+    return 456;
+  })
+  .then(res => {
+    console.log(res);
+    return 789;
+  })
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log('ERROR:', err.message);
+  });
+```
+***Run to show 123,456,789***
+A promise rejection at any point in the chain will result in all subsequent `then` handlers to be skipped and execution will jump directly to the catch handler: 
+
+***Run and show error on each step***
+```js
+new Promise<number>((res, rej) => {
+  res(123);
+})
+  .then(res => {
+    console.log(res);
+    // foo.bar;
+    return 456;
+  })
+  .then(res => {
+    console.log(res);
+    // foo.bar;
+    return 789;
+  })
+  .then(res => {
+    console.log(res);
+    // foo.bar;
+  })
+  .catch(err => {
+    console.log('ERROR:', err.message);
+  });
 ```
