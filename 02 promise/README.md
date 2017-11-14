@@ -150,3 +150,5 @@ new Promise<number>((res, rej) => {
     console.log('ERROR:', err.message);
   });
 ```
+
+> NOTE: there is more to promises, but this is more that enough to cover async await.
