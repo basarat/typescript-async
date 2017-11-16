@@ -1,5 +1,5 @@
 # Promise fundamentals using TypeScript
-> Learn the fundamentals of creating, annotating, resolving, rejecting promises using TypeScript. We also cover the fundamentals of a *then chain*
+> Learn the fundamentals of creating, resolving and rejecting promises using TypeScript. We also cover the fundamentals of a *then chain*.
 
 ***Have the demo window open***
 
@@ -9,14 +9,14 @@ At the heart of async/await is a Promise chain. To create a promise chain we nee
 * The constructor takes an *executor* callback which will be called by the runtime with two arguments.
 * The first argument is a resolve function that can be used to resolve the promise.
 * The second argument is a reject function that can be used to reject the promise.
-* These functions are essentially used to control the fate of the promise.
 ```js
 const example = new Promise<number>((resolve, reject) => {
   // Use resolve or reject to determine the fate of the promise
 });
 
 ```
-Promises have two function's `.then` and `.catch` that are invoked depending upon the fate of the promise.
+* There are two fates of a promise, resolved or rejected.
+* Promises have two member function's `.then` and `.catch` that are invoked depending upon the fate of the promise.
 ```js
 example.then(value => {
   console.log('then', value);
@@ -37,13 +37,14 @@ example.catch(error => {
   // throw new Error('message');  => good
 ```
 ***Select the new Error***
-A promise rejection should only be done in exceptional circumstances, and just like it is bad practice to throw a raw string, it is bad practice to reject a promise with a raw string. Always use the error constructor `new Error`.
+A promise rejection should only be done in exceptional circumstances, and just like it is bad practice to throw a raw string, it is bad practice to reject a promise with a raw string. Always use the error constructor `new Error` when rejecting a promise.
 
 ***Delete all the code***
-Alright, now that we understand the fundamentals of promise creation and its fate, lets look into the concept of a promise *chain*.
+Alright, now that we understand the fundamentals of promise creation and its resolved/rejected fate, lets look into the concept of a promise *chain*.
 
 * The `then` function creates a new promise.
 * This new promise is distinct from the original promise
+* We can verify that by simply comparing it to the original promise.
 ```js
 const first = new Promise<number>((resolve, reject) => {
   resolve(123);
@@ -58,7 +59,8 @@ console.log(first === second); // false
 ```
 
 ***Delete console.log(first === second); // false***
-* The fate of this promise is determined by the body of the `then` callback.
+
+* This second promise is entitled to its own then and catch callbacks if you want.
 ```js
 second.then(value => {
   console.log('second then', value);
@@ -67,6 +69,10 @@ second.catch(error => {
   console.log('second catch', error);
 });
 ```
+
+***Select the body of first then***
+If the original first promise resolves, the fate of this second promise is determined by the body of the `then` callback.
+
 * If you return a value from the callback, that becomes the resolved value of the second promise
 ```js
       // Control the fate of second
@@ -77,7 +83,9 @@ second.catch(error => {
       // Control the fate of second
 
 ```
-* If you return a promise, then the value becomes the resolved value of the second promise
+If you return a promise from this callback, the resolution of this second promise is determined by the fate of this promise.
+
+* If the promise resolved, its resolved value is also resolved value the second promise
 
 ```js
       // Control the fate of second
@@ -89,13 +97,14 @@ second.catch(error => {
       // Control the fate of second
       return new Promise((res, rej) => rej(new Error('example')));
 ```
+Any runtime exceptions in the then callback also result in a rejection of the promise.
 
-* If you *throw* an error, then the second promise is rejected.
+* A quick example would to be to explicitly  *throw* an error.
 ```js
       // Control the fate of second
       throw new Error('example');
 ```
-* If there is a JavaScript runtime error, then again the second promise is rejected e.g. using an undeclared variable.
+* Another possibility of a runtime exception is programming errors, like using an undeclared variable.
 
 ```js
       // Control the fate of second
@@ -105,7 +114,7 @@ second.catch(error => {
 ***Delete everything***
 One very useful and fundamental behavior of promises is how rejection is propagated.
 
-Lets say we have a chain of promises with a few `thens`'s followed by a `catch`
+Lets say we have a chain of promises with a few `then`'s followed by a `catch`
 
 ```js
 new Promise<number>((res, rej) => {
@@ -152,5 +161,9 @@ new Promise<number>((res, rej) => {
     console.log('ERROR:', err.message);
   });
 ```
+
+Of course if there is no error in the preceding chain, the catch handler is never called.
+
+There is more to promises, but the understanding of these then chains and catch cascading is sufficient for using async / await.
 
 > NOTE: there is more to promises, but this is more that enough to cover async await.
