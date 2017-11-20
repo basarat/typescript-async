@@ -3,14 +3,25 @@
 
 async / await should really be though as a better way to use Promises reliably and safely with less chances of programming errors.
 
-* TODO:
-  * Use async in function, in arrow functions, in class methods, in class properties.
+* To make a function `async` all you need to do is prefix it with the async keyword. 
+* You can just as easily make async arrow functions, and async class methods.
 
-* An async function always return a promise. This is just JavaScript.
 ```js
-async function foo() {
-  return 123;
+async function foo(){
 }
-```
 
-* await values, or promises is okay.
+const bar = async () => {
+}
+
+class Baz{
+  async qux(){
+  }
+} 
+
+```
+***Delete the extra functions***
+Lets focus in on a simple async function. An async function *always* returns a promise. 
+
+
+
+* await values `await 123` , or promises `await 456` is okay.
