@@ -97,4 +97,4 @@ foo();
 ***run the code***
 When we run this it works as expected, giving us the value for not a promise, the resolved value for a promise that will resolve, and a try / catch error for promise that will reject.
 
-Essentially, an async function allows your to write code based on promises in a very synchronous manner.
+Essentially, an async function allows your to write asynchronous code based on promises in a very synchronous manner.
