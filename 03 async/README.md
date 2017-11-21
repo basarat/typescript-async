@@ -80,20 +80,21 @@ the behavior will be different depending on the fate of the promise,
 ```js
 async function foo() {
   const res1 = await notAPromise;
-  console.log({ res1 });
+  console.log({ forNotAPromise: res1 });
   const res2 = await promiseThatWillResolve;
-  console.log({ res2 });
+  console.log({ forPromiseThatWillResolve: res2 });
   try {
     const res3 = await promiseThatWillReject;
-    console.log('I will never get called');
+    console.log('I will never get called as error is thrown in previous line');
   }
   catch (e) {
-    console.log('Error:', e.message);
+    console.log({ forPromiseThatWillReject: e.message });
   }
 }
 
 foo();
 ```
+***run the code***
+When we run this it works as expected, giving us the value for not a promise, the resolved value for a promise that will resolve, and a try / catch error for promise that will reject.
 
-TODO: 
-* await values `await 123` , or promises `await 456` is okay.
+Essentially, an async function allows your to write code based on promises in a very synchronous manner.
