@@ -1,11 +1,11 @@
-# Async functions and the await operator
-> This lesson covers the fundamentals of annotating a function as async. An async function gets the chance to use the `await` keyword. This lesson covers the usages of these keywords.
+# async functions and the await operator
+> async / await should really be thought as a better way to use Promises reliably and safely with less chances of programming errors.
+
+> This lesson covers the fundamentals of annotating a function as async. An `async` function gets the chance to use the `await` keyword. This lesson covers the usages of these keywords.
 
 ***Have a demo window open***
-async / await should really be thought as a better way to use Promises reliably and safely with less chances of programming errors.
-
 * To make a function `async` all you need to do is prefix it with the async keyword.
-* You can just as easily make async arrow functions, and async class methods.
+* async can be used with simple function, arrow functions, and class methods.
 
 ```js
 async function foo() {
@@ -59,26 +59,26 @@ foo().then(value => {
 ```
 ***Show the output of the demo***
 
-Of course in most cases TypeScript is smart enough to infer this for you.
+TypeScript is smart enough to infer the return type for async functions to be the Promise of the returned values.
 ***Show the return type information***
 
 ***delete the whole code***
 With the return value of async functions out of the way lets focus in on the body of an async function.
 
-* To kick off lets create a few promises to use as examples.
-* We setup nodejs to ignore any unhandled rejections for now.
-* We create a variable that is not a promise.
-* We create a promise that will resolve,
-* We also create a promise that will reject.
+* We setup nodejs to ignore any unhandled promise rejections to have a clean console.
+* Next we setup a few promises to use in our async function.
+  * We create a variable that is not a promise.
+  * We create a promise that will resolve,
+  * We also create a promise that will reject.
 
 
 ```js
 process.on('unhandledRejection', () => null);
 
 const notAPromise =
-  456;
+  123;
 const promiseThatWillResolve =
-  new Promise(res => res(123));
+  new Promise(res => res(456));
 const promiseThatWillReject =
   new Promise((res, rej) => rej(new Error('Hello')));
 
@@ -106,38 +106,25 @@ async function foo() {
     console.log({ forPromiseThatWillReject: e.message });
   }
 }
-
 foo();
 ```
 ***run the code***
-* Not lets call this function and verify its execution. As you can see it works as expected
-* giving us the value for not a promise,
-* the resolved value for a promise that will resolve
-* and a try / catch error for promise that will reject.
+Lets go ahead and call this function to verify that works as explained
+* The not a promise variable, just resolves to itself.
+* The promise that will resolve, returns its final resolved value
+* And the promise that gets rejected, interacts with try / catch as expected.
 
-Of course if a promise takes some time to settle in its fate, the execution at the await operator pauses till the fate is determined.
+If a promise takes some time to settle in its fate, the execution at the await operator pauses till the fate is determined.
 * Here we are going to wait for 5 seconds before determining the fate of a local promise.
-
+* And if we go ahead and run this code, you can see that execution pauses for 5 seconds and resumes with logging out `Done waiting`.
 ```js
 async function foo() {
-  const res1 = await notAPromise;
-  console.log({ forNotAPromise: res1 });
-  const res2 = await promiseThatWillResolve;
-  console.log({ forPromiseThatWillResolve: res2 });
-  try {
-    const res3 = await promiseThatWillReject;
-    console.log('I will never get called as error is thrown in previous line');
-  }
-  catch (e) {
-    console.log({ forPromiseThatWillReject: e.message });
-  }
   console.log('Waiting 5 seconds');
   await new Promise(res => setTimeout(res, 5000));
   console.log('Done waiting!');
 }
-
 foo();
 ```
 
 ***Select the whole async function***
-Essentially, an async function allows your to write asynchronous code based on promises in a very synchronous manner.
+Essentially, async/await allows your to write asynchronous code based on promises, in a manner that allows you to reuse your synchronous code writing skills.
