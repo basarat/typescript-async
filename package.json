@@ -4,7 +4,8 @@
   "description": "Docs / Code to an accompanying video course on async/await with TypeScript.",
   "main": "index.js",
   "dependencies": {
-    "@types/node": "8.0.53"
+    "@types/node": "8.0.53",
+    "axios": "0.17.1"
   },
   "devDependencies": {},
   "scripts": {
