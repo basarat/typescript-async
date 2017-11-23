@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
+  ],
+  "compileOnSave": false
+}
