@@ -18,7 +18,7 @@ npm install
 
 ## Future
 
-* Why use TypeScript quiz:
+### Why use TypeScript quiz:
 
 What does this function return?
 
@@ -41,3 +41,6 @@ async function foo() {
 I see this code out in the wild all the time.
 
 Hopefully you can see that even for really simple codebases, when dealing with async await and promises, it is great to have TypeScript on your side.
+
+### utils.promisify
+Worth mentioning.

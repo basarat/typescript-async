@@ -51,4 +51,42 @@ Location: ${item.location}
 ***Run the demo and show the sequential flow***
 Doing this sequence of events is something that is way too easy thanks to async await. 
 
-Sometimes you might want to run a bunch of operations in parallel and wait for all of them to resolve. This can be done with `Promise.all`
+***Delete the for loop***
+Sometimes you might want to run a bunch of operations in parallel and wait for all of them to resolve. This can be done with `Promise.all`. 
+
+* We start off by running all the calls to `getUserDetails` in parallel. At this point we have an array of promises that will resolve independently.
+* `Promise.all` is a native function that takes an array of promises and returns a new promise that resolves with an array of resolved values for each of the promise. 
+* Now that we have a single promise we can await it easily giving a single array of resolved values. 
+* Now we simply loop over the elements of the array and log it out.
+
+```js
+  const allPromises = handles.map(getUserDetails);
+  const combinedPromise = Promise.all(allPromises);
+  const details = await combinedPromise;
+  for (const item of details) {
+    console.log(`
+Name: ${item.name}
+Location: ${item.location}
+    `);
+  }
+```
+***Run the demo***
+You can see that we get all the three results at the same time and that the overall process is much faster as we get the details in parallel.
+
+***Delete everything starting from `const combinedPromise`***
+One final native control flow worth mentioning is `Promise.race`. 
+
+* This function takes an array of promises just like `Promise.all` and returns a new promise. 
+* The fate of this new promise is equal to the fate of the first promise that resolves or rejects.
+
+```js
+  const resultOfPromiseThatWins = Promise.race(allPromises);
+  const item = await resultOfPromiseThatWins;
+  console.log(`
+Name: ${item.name}
+Location: ${item.location}
+    `);
+```
+
+***Run the code***
+In our case here the first promise resolved the fastest and hence that is the result of the item.
