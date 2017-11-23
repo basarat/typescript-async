@@ -1,4 +1,7 @@
 import { getUserDetails } from './getUserDetails';
+(Symbol as any).asyncIterator =
+  (Symbol as any).asyncIterator
+  || Symbol.for("Symbol.asyncIterator");
 
 function* getUsers() {
   yield getUserDetails('basarat');
