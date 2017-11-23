@@ -1,17 +1,10 @@
-import axios from 'axios';
-
-async function getUserDetails(handle: string) {
-  const res = await axios.get<{ name: string, location: string }>(
-    `https://api.github.com/users/${handle}`
-  );
-  return res.data;
-}
+import { getUserDetails } from './getUserDetails';
 
 async function main() {
   const handles = [
     'basarat',
     'eggheadio',
-    'johnnyreilly'
+    'joelhooks'
   ];
   /** In series */
   for (const handle of handles) {
