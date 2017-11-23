@@ -2,6 +2,10 @@
 
 Docs / Code to an accompanying video course on async/await with TypeScript.
 
+# Setup 
+```
+npm install
+```
 
 ## Lessons
 

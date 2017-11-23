@@ -1,0 +1,24 @@
+{
+  "name": "typescript-async",
+  "version": "1.0.0",
+  "description": "Docs / Code to an accompanying video course on async/await with TypeScript.",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "8.0.53"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basarat/typescript-async.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basarat/typescript-async/issues"
+  },
+  "homepage": "https://github.com/basarat/typescript-async#readme"
+}
