@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 async function getUserDetails(handle: string) {
-  const res = await axios.get(`https://api.github.com/users/${handle}`);
-  return {
-    name: res.data.name,
-    location: res.data.location
-  };
+  const res = await axios.get<{ name: string, location: string }>(
+    `https://api.github.com/users/${handle}`
+  );
+  return res.data;
 }
 
 async function main() {
