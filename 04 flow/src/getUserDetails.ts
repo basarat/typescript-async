@@ -12,6 +12,11 @@ const people = {
     location: 'Vancouver, WA'
   }
 }
+
+/** 
+ * This is a mocked out version because github API throttling is pretty bad.
+ * Also the code below means it will continue to work for a long long time (longer than github api 🌹) 
+ * */
 export async function getUserDetails(handle: string) {
   return new Promise<{ name: string, location: string }>(res => {
     setTimeout(() => {
