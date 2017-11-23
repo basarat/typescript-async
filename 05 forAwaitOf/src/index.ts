@@ -1,23 +1,32 @@
-import { getUserDetails } from './getUserDetails';
 (Symbol as any).asyncIterator =
   (Symbol as any).asyncIterator
   || Symbol.for("Symbol.asyncIterator");
 
-function* getUsers() {
-  yield getUserDetails('basarat');
-  yield getUserDetails('eggheadio');
-  yield getUserDetails('joelhooks');
-}
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
-async function main() {
-  for (const promise of getUsers()) {
-    const item = await promise;
-    console.log(`
-Name: ${item.name}
-Location: ${item.location}
-    `);
+// function* numbers() {
+//   for (let index = 0; index < 10; index++) {
+//     yield index;
+//   }
+// }
+
+// async function main() {
+//   for (const num of numbers()) {
+//     console.log(num);
+//   }
+// }
+// main();
+
+async function* numbers() {
+  for (let index = 0; index < 10; index++) {
+    await delay(1000);
+    yield index;
   }
 }
 
+async function main() {
+  for await (const num of numbers()) {
+    console.log(num);
+  }
+}
 main();
