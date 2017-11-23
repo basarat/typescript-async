@@ -14,13 +14,27 @@ async function main() {
     'eggheadio',
     'johnnyreilly'
   ];
+  /** In series */
   for (const handle of handles) {
-    const res = await getUserDetails(handle);
+    const item = await getUserDetails(handle);
     console.log(`
-      Handle ${handle}:
-        Name: ${res.name}
-        Location: ${res.location}
+        Name: ${item.name}
+        Location: ${item.location}
     `);
   }
+  /** In parallel */
+  const details = await Promise.all(handles.map(getUserDetails));
+  for (const item of details) {
+    console.log(`
+        Name: ${item.name}
+        Location: ${item.location}
+    `);
+  }
+  /** First one wins! */
+  const item = await Promise.race(handles.map(getUserDetails));
+  console.log(`
+        Name: ${item.name}
+        Location: ${item.location}
+  `);
 }
 main();
