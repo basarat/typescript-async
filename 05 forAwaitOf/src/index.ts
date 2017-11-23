@@ -8,6 +8,7 @@ function* getUsers() {
   yield getUserDetails('eggheadio');
   yield getUserDetails('joelhooks');
 }
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 async function main() {
   for (const promise of getUsers()) {
