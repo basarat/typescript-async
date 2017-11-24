@@ -35,4 +35,64 @@ main();
 ***Run the code***
 You can see that it behaves as expected logging out `10` numbers. 
 
-Before the `for await of` JavaScript feature, a generator function could not be async.  
+
+***Delete the main function to prevent infinity loop***
+Now lets imagine that we are going to get the next number from an external source like a backend service that will perform its magic.
+
+```js
+import { magic } from './server'; // NEW LINE
+
+function* numbers() {
+  let index = 1;
+  while (true) {
+    yield index;
+    index = magic(index);         // REPLACE LINE, Show error
+    if (index > 10) {
+      break;
+    }
+  }
+}
+```
+Now if we try to use this magic function we have a type mismatch. 
+***Show error on index***
+
+What we really want is the resolved value of magic function and use it in our breakout logic. That can be done easily with, (you guessed it) async await.
+
+```js
+import { magic } from './server';
+
+async function* numbers() {      // ADD ASYNC 
+  let index = 1;
+  while (true) {
+    yield index;
+    index = await magic(index);  // ADD AWAIT
+    if (index > 10) {
+      break;
+    }
+  }
+}
+
+```
+
+Before the `for await of` JavaScript feature, a generator function could not be async. This new feature requires a runtime polyfill to work correctly called the `asyncIterator` symbol. 
+
+We can provide it easily here, alternatively you can use a library like core-js that will polyfill it for you.
+
+```js
+(Symbol as any).asyncIterator =
+  (Symbol as any).asyncIterator
+  || Symbol.for("Symbol.asyncIterator");
+```
+
+This `numbers` function is an async generator, and similar to how we use `for of` loops to use generators, we can use `for await of` to iterate its values. 
+
+```js
+async function main() {
+  for await (const num of numbers()) {
+    console.log(num);
+  }
+}
+main();
+```
+***Select the `main` function body***
+So in short when you want to use `async await` with generators, you can use `for await of` to iterate its results.
