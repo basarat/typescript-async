@@ -2,7 +2,7 @@
 
 Docs / Code to an accompanying video course on async/await with TypeScript.
 
-# Setup 
+# Setup
 ```
 npm install
 ```
@@ -11,8 +11,8 @@ npm install
 
 * [Simplify callbacks with async await](https://egghead.io/lessons/typescript-simplify-asynchronous-callback-functions-using-async-await)
 * [02 Promise](https://egghead.io/lessons/promise-fundamentals-using-typescript)
-* [03 Async Await]()
-* [04 Parallel and serial execution]()
+* [03 Async Await](https://egghead.io/lessons/typescript-async-functions-and-the-await-operator)
+* [04 Serial / Parallel / Race execution, Control flow]()
 * [05 Asynchronous iteration using for-await-of]()
 
 
