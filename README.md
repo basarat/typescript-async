@@ -12,7 +12,7 @@ npm install
 * [Simplify callbacks with async await](https://egghead.io/lessons/typescript-simplify-asynchronous-callback-functions-using-async-await)
 * [02 Promise](https://egghead.io/lessons/promise-fundamentals-using-typescript)
 * [03 Async Await](https://egghead.io/lessons/typescript-async-functions-and-the-await-operator)
-* [04 Serial / Parallel / Race execution, Control flow]()
+* [04 Serial / Parallel / Race execution, Control flow](https://egghead.io/lessons/egghead-parallel-and-serial-execution-using-async-await)
 * [05 Asynchronous iteration using for-await-of]()
 
 
