@@ -13,7 +13,7 @@ npm install
 * [02 Promise](https://egghead.io/lessons/promise-fundamentals-using-typescript)
 * [03 Async Await](https://egghead.io/lessons/typescript-async-functions-and-the-await-operator)
 * [04 Serial / Parallel / Race execution, Control flow](https://egghead.io/lessons/egghead-parallel-and-serial-execution-using-async-await)
-* [05 Asynchronous iteration using for-await-of]()
+* [05 Asynchronous iteration using for-await-of](https://egghead.io/lessons/javascript-asynchronous-iteration-using-for-await-of)
 
 
 ## Future
