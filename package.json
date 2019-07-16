@@ -4,7 +4,7 @@
   "description": "Docs / Code to an accompanying video course on async/await with TypeScript.",
   "main": "index.js",
   "dependencies": {
-    "@types/node": "8.0.53"
+    "@types/node": "12.6.3"
   },
   "devDependencies": {},
   "scripts": {
