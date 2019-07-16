@@ -1,5 +1,7 @@
 # `async`/`await` using TypeScript
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/basarat/typescript-async.svg)](https://greenkeeper.io/)
+
 Docs / Code to an accompanying video course on async/await with TypeScript.
 
 # Setup
